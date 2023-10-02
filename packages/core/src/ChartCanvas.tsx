@@ -736,7 +736,6 @@ export class ChartCanvas<TXAxis extends number | Date> extends React.Component<
 
             this.finalPinch = undefined;
 
-            this.clearThreeCanvas();
             const firstItem = head(fullData);
             const scale_start = head(xScale.domain());
             const data_start = xAccessor(firstItem);
@@ -792,7 +791,6 @@ export class ChartCanvas<TXAxis extends number | Date> extends React.Component<
         const currentItem = getCurrentItem(xScale, xAccessor, mouseXY, plotData);
         const currentCharts = getCurrentCharts(chartConfigs, mouseXY);
 
-        this.clearThreeCanvas();
 
         const firstItem = head(fullData);
         const scale_start = head(xScale.domain());
@@ -847,7 +845,6 @@ export class ChartCanvas<TXAxis extends number | Date> extends React.Component<
 
     public xAxisZoom = (newDomain: any) => {
         const { xScale, plotData, chartConfigs } = this.calculateStateForDomain(newDomain);
-        this.clearThreeCanvas();
 
         const { xAccessor, fullData } = this.state;
         const firstItem = head(fullData);
@@ -882,7 +879,7 @@ export class ChartCanvas<TXAxis extends number | Date> extends React.Component<
     };
 
     public yAxisZoom = (chartId: string, newDomain: any) => {
-        this.clearThreeCanvas();
+    
         const { chartConfigs: initialChartConfig } = this.state;
         const chartConfigs = initialChartConfig.map((each: any) => {
             if (each.id === chartId) {
@@ -921,7 +918,7 @@ export class ChartCanvas<TXAxis extends number | Date> extends React.Component<
     };
 
     public redraw = () => {
-        this.clearThreeCanvas();
+
         this.draw({ force: true });
     };
 
@@ -1041,7 +1038,6 @@ export class ChartCanvas<TXAxis extends number | Date> extends React.Component<
 
             const { onLoadAfter, onLoadBefore } = this.props;
 
-            this.clearThreeCanvas();
 
             this.setState(
                 {
@@ -1223,7 +1219,7 @@ export class ChartCanvas<TXAxis extends number | Date> extends React.Component<
         });
 
         if (changed) {
-            this.clearThreeCanvas();
+
             this.setState({
                 chartConfigs: newChartConfig,
             });
